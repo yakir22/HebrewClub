@@ -1,0 +1,68 @@
+{
+	"java.configuration.updateBuildConfiguration": "automatic",
+	"java.compile.nullAnalysis.mode": "automatic",
+	"files.exclude": {
+		// ".gitignore": true,
+		"plugins": true,
+		"package-lock.json": true,
+		"yarn.lock": true,
+		".ruby-version": true,
+		".node-version": true,
+		// ".buckconfig": true,
+		// ".bundle": true,
+		"**/__tests__": true,
+		".watchmanconfig": true,
+		// "metro.config.js": true,
+		"Gemfile": true,
+		"**/.git": true,
+		"**/*.dev": true,
+		"**/.DS_Store": true,
+		"**/node_modules": true,
+		///// maybe restore at one point
+		// "**/ios": true,
+		"**/reportWebVitals.ts": true,
+		"**/react-app-env.d.ts": true,
+		// "**/app.json": true,
+		// "**/.eslintignore": true,
+		// "**/.eslintrc.js": true,
+		// "**/.prettierrc.js": true,
+		// "**/babel.config.js": true,
+		// "**/config-overrides.js": true,
+		// "**/index.tsx": true,
+		// "**/index.js": true,
+		//"**/tsconfig.json": true,
+		"**/patches": true,
+	},
+	"editor.tabSize": 4,
+	"editor.insertSpaces": false,
+	"editor.detectIndentation": false,
+	"javascript.validate.enable": false,
+	"editor.snippetSuggestions": "bottom",
+	"editor.suggestSelection": "first",
+	"editor.formatOnSave": true,
+	"editor.formatOnType": false,
+	"editor.selectionHighlight": false,
+	"editor.suggest.snippetsPreventQuickSuggestions": false,
+	"editor.tabCompletion": "onlySnippets",
+	"editor.wordBasedSuggestions": false,
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": true
+	},
+	"eslint.validate": [
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact"
+	],
+	"eslint.options": {
+		"extensinons": [
+			".ts",
+			".js",
+			".tsx",
+			".jsx"
+		]
+	},
+	"eslint.format.enable": true,
+	"git.ignoreLimitWarning": true,
+	"java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx2G -Xms100m -Xlog:disable"
+}

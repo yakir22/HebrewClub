@@ -1,0 +1,47 @@
+{
+	"project_info": {
+		"project_number": "160331476715",
+		"project_id": "hebrew-club",
+		"storage_bucket": "hebrew-club.appspot.com"
+	},
+	"client": [
+		{
+			"client_info": {
+				"mobilesdk_app_id": "1:160331476715:android:050818aa09382527b798ae",
+				"android_client_info": {
+					"package_name": "com.kabalinapps.hebrewclub"
+				}
+			},
+			"oauth_client": [
+				{
+					"client_id": "160331476715-rjnsuas0gcbdqm1mbak7o3osel70jk5b.apps.googleusercontent.com",
+					"client_type": 3,
+					"android_info": {
+						"package_name": "com.kabalinapps.hebrewclub",
+						"certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+					}
+				},
+				{
+					"client_id": "160331476715-9nq0h9j41jnhtdk2l4cp77ljkjuvomhn.apps.googleusercontent.com",
+					"client_type": 3
+				}
+			],
+			"api_key": [
+				{
+					"current_key": "AIzaSyADHzTFlFw4_EamHDM0DwzM2502HGcbhEk"
+				}
+			],
+			"services": {
+				"appinvite_service": {
+					"other_platform_oauth_client": [
+						{
+							"client_id": "160331476715-0jr296nq67fh97g152jp7calkfoi90de.apps.googleusercontent.com",
+							"client_type": 3
+						}
+					]
+				}
+			}
+		}
+	],
+	"configuration_version": "1"
+}
