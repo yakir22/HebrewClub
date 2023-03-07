@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-
+import { StyleSheet, View, Text, ScrollView } from 'react-native';
+import { useAppStore } from '../Data/MisckHooks';
+import { observer } from 'mobx-react-lite';
 const ChatBubble: React.FC<{ message: string, isMe: boolean }> = ({ message, isMe }) => {
 	const bubbleStyles = [
 		styles.bubble,
@@ -18,16 +19,22 @@ const ChatBubble: React.FC<{ message: string, isMe: boolean }> = ({ message, isM
 	);
 };
 
-const ChatPage = () => {
+const ChatPage = observer(() => {
+	const appStore = useAppStore();
+
+	console.log('ChatPage', appStore.telegramTextEntries.length);
 	return (
-		<View style={styles.container}>
-			<ChatBubble message="Hello" isMe={false} />
-			<ChatBubble message="Hi there!" isMe={true} />
-			<ChatBubble message="How are you doing?" isMe={false} />
-			<ChatBubble message="I'm doing well, thanks for asking!" isMe={true} />
-		</View>
+		<ScrollView>
+			<View style={styles.container}>
+				{
+					appStore.telegramTextEntries.map((entry, index) => {
+						return <ChatBubble message={entry.text_entities.map((e) => e.text).join(' ')} isMe={entry.from === 'Ali'} key={index} />
+					})
+				}
+			</View>
+		</ScrollView>
 	);
-};
+});
 
 const styles = StyleSheet.create({
 	container: {

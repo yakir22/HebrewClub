@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import ConfettiCannon from 'react-native-confetti-cannon';
-import { useScreenSize } from './MisckHooks';
+import { useScreenSize } from '../Data/MisckHooks';
 
 const SummeryPage = () => {
 	const size = useScreenSize();

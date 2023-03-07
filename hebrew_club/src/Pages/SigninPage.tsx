@@ -2,13 +2,12 @@ import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { Button, Text, View } from 'react-native'
 import auth from '@react-native-firebase/auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-// import firebaseApp from '@react-native-firebase/app';
 import firestore from '@react-native-firebase/firestore';
 import { useEffect, useState } from 'react';
-import ThisWeekPage from './ThisWeekPage';
 import { useNavigation } from '@react-navigation/native';
+import { INavigation } from '../Data/AppTypes.d';
 
-let app;
+// let app;
 // if (firebase.apps.length === 0) {
 // 	app = firebase.initializeApp(firebaseConfig);
 // } else {
@@ -70,8 +69,9 @@ const onGoogleButtonPress = async () => {
 };
 
 
+
 const SignInPage = () => {
-	const navigation = useNavigation();
+	const navigation = useNavigation<INavigation>();
 	const [user, setUser] = useState<any>(null);
 	useEffect(() => {
 		async function checkUser() {
@@ -81,11 +81,12 @@ const SignInPage = () => {
 		checkUser();
 	}, []);
 	useEffect(() => {
-
-		(navigation as any).reset({
-			index: 0,
-			routes: [{ name: 'ThisWeek' }],
-		});
+		if (user) {
+			navigation.reset({
+				index: 0,
+				routes: [{ name: 'ThisWeek' }],
+			});
+		}
 	}, [user]);
 
 	console.log('user', user);

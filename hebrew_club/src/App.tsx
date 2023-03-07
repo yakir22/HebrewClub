@@ -3,11 +3,11 @@ import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createStackNavigator } from '@react-navigation/stack';
-import SignInPage from './SigninPage';
-import ThisWeekPage from './ThisWeekPage';
-import ChatPage from './ChatPage';
-import AnswerPage from './AnswerPage';
-import SummeryPage from './SummeryPage';
+import SignInPage from './Pages/SigninPage';
+import ThisWeekPage from './Pages/ThisWeekPage';
+import ChatPage from './Pages/ChatPage';
+import AnswerPage from './Pages/AnswerPage';
+import SummeryPage from './Pages/SummeryPage';
 
 
 const Stack = createStackNavigator();
