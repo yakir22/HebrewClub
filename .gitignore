@@ -104,3 +104,8 @@ dist
 .tern-port
 hebrew_club/android/app/build/
 hebrew_club/android/.gradle/
+Polly/Node/data/
+Polly/Python/data/
+Polly/Python/pollyenv/Lib/site-packages/autopep8.py
+Polly/Python/pollyenv/
+Polly/Python/output.mp3
