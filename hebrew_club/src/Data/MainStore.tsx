@@ -1,8 +1,8 @@
 import { makeAutoObservable, makeObservable, action, computed, observable } from 'mobx';
 import { createContext } from 'react';
-import { IExercise, ITelegramTextEntry } from '../Data/AppTypes.d';
+import { IExercise, ITelegramTextEntry } from './AppTypes.d';
 
-class AppStore {
+class MainStore {
 	private _me: any = undefined;
 	public get me(): any {
 		return this._me;
@@ -51,7 +51,6 @@ class AppStore {
 	public setExcercise(value: IExercise) {
 		this._excercise = value;
 	}
-
 	private _quesionId: number = -1;
 	public get quesionId(): number {
 		return this._quesionId;
@@ -66,9 +65,9 @@ class AppStore {
 }
 
 
-const __appStore = new AppStore();
-const __appStoreContext = createContext(__appStore);
-const getAppStoreContext = () => __appStoreContext;
+const __mainStore = new MainStore();
+const __mainStoreContext = createContext(__mainStore);
+const getMainStoreContext = () => __mainStoreContext;
 
-export const getMainStore = () => __appStore;
-export default getAppStoreContext;
+export const getMainStore = () => __mainStore;
+export default getMainStoreContext;

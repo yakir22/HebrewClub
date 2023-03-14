@@ -6,6 +6,7 @@ import firestore from '@react-native-firebase/firestore';
 import { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { INavigation } from '../Data/AppTypes.d';
+import { useMainStore } from '../Data/MisckHooks';
 
 // let app;
 // if (firebase.apps.length === 0) {
@@ -73,6 +74,7 @@ const onGoogleButtonPress = async () => {
 const SignInPage = () => {
 	const navigation = useNavigation<INavigation>();
 	const [user, setUser] = useState<any>(null);
+	const mainStore = useMainStore();
 	useEffect(() => {
 		async function checkUser() {
 			const user = await checkSignInStatus();
@@ -84,8 +86,9 @@ const SignInPage = () => {
 		if (user) {
 			navigation.reset({
 				index: 0,
-				routes: [{ name: 'ThisWeek' }],
+				routes: [{ name: 'WeekSelection' }],
 			});
+			mainStore.me = user;
 		}
 	}, [user]);
 

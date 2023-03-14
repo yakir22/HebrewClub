@@ -9,9 +9,6 @@ export interface ITextEntity {
 	text: string;
 }
 
-
-
-
 export interface ITelegramTextEntry {
 	type: string;
 	text: string;
@@ -29,16 +26,16 @@ export interface ITelegramTextEntry {
 }
 
 export interface IQuestion {
-	id: number;
+	id?: number;
 	title: string;
-	sound: string;
+	sound?: string;
 }
 
 export interface IWord {
-	id: number;
+	id?: number;
 	text: string;
-	sound: string;
-	translation: string;
+	sound?: string;
+	translation?: string;
 }
 
 export interface IExercise {
@@ -46,4 +43,12 @@ export interface IExercise {
 	title?: string;
 	questions?: IQuestion[];
 	words?: IWord[];
+}
+
+
+
+export interface IOneDayQuestions {
+	t1: string[];
+	t2: string[][];
+	otherMessages: ITelegramTextEntry[];
 }

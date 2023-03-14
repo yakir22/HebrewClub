@@ -2,28 +2,28 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import ConfettiCannon from 'react-native-confetti-cannon';
+import { INavigation } from '../Data/AppTypes.d';
 import { useScreenSize } from '../Data/MisckHooks';
 
 const SummeryPage = () => {
 	const size = useScreenSize();
-	const navigation = useNavigation();
+	const navigation = useNavigation<INavigation>();
 
 	const handleReadOther = () => {
-		(navigation as any).navigate('Chat');
+		navigation.navigate('Chat');
 	};
 
 	const handleNextQuestion = () => {
-		(navigation as any).navigate('Answer');
+		navigation.navigate('Answer');
 	};
 
 	const handleBackToMain = () => {
-		(navigation as any).reset(
+		navigation.reset(
 			{
 				index: 0,
-				routes: [{ name: 'ThisWeek' }],
+				routes: [{ name: 'WeekSelection' }],
 			}
 		);
-
 	};
 
 	return (

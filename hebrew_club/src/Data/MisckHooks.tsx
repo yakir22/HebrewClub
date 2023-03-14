@@ -3,7 +3,7 @@ import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import { GoogleSignin, User } from '@react-native-google-signin/google-signin';
 import { Dimensions } from 'react-native';
-import getAppStoreContext from './AppStore';
+import getMainStoreContext from './MainStore';
 
 export const useScreenSize = () => {
 	const [screenSize, setScreenSize] = useState(Dimensions.get('window'));
@@ -15,9 +15,9 @@ export const useScreenSize = () => {
 
 	return screenSize;
 };
-export const useAppStore = () => {
-	const appStore = useContext(getAppStoreContext());;
-	return appStore;
+export const useMainStore = () => {
+	const mainStore = useContext(getMainStoreContext());;
+	return mainStore;
 };
 
 

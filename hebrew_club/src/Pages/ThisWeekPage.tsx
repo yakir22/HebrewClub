@@ -5,8 +5,8 @@ import Sound from 'react-native-sound';
 import RNFetchBlob from "rn-fetch-blob";
 import { unzip } from 'react-native-zip-archive';
 import { INavigation, ITextEntity } from '../Data/AppTypes.d';
-import getAppStoreContext from '../Data/AppStore';
-import { useAppStore } from '../Data/MisckHooks';
+import getMainStoreContext from '../Data/MainStore';
+import { useMainStore } from '../Data/MisckHooks';
 // @ts-ignore
 import md5 from 'md5';
 import { observer } from 'mobx-react-lite';
@@ -70,7 +70,7 @@ async function playAudio(filename: string) {
 }
 
 const ThisWeekPage = observer(() => {
-	const appStore = useContext(getAppStoreContext());
+	const mainStore = useContext(getMainStoreContext());
 	// const [questions, setQuestions] = React.useState<string[]>([]);
 	const [extractedPath, setExtractedPath] = React.useState<string | null>(null);
 	const [audioFile, setAudioFile] = React.useState<string | null>(null);
@@ -84,7 +84,7 @@ const ThisWeekPage = observer(() => {
 			playAudio(audioFile!);
 			return;
 		}
-		appStore.setQuesionId(id);
+		mainStore.setQuesionId(id);
 		navigation.navigate('Answer');
 	};
 
@@ -114,7 +114,7 @@ const ThisWeekPage = observer(() => {
 					setTitle((json[0].text_entities as ITextEntity[]).map((entity) => entity.text).join(''));
 					setSubtitle((json[1].text_entities as ITextEntity[]).map((entity) => entity.text).join(''));
 					setAudioFile(`${extractedPath}/${json[2].file}`);
-					appStore.telegramTextEntries = json;
+					mainStore.telegramTextEntries = json;
 					// playAudio(`${extractedPath}/${json[2].file}`);
 				}
 			} catch (error) {
@@ -136,25 +136,23 @@ const ThisWeekPage = observer(() => {
 		const words = lines.slice(index + 1);
 
 		console.log('setExcercise:');
-		appStore.setExcercise({
+		mainStore.setExcercise({
 			title,
 			questions: questions.map((line, index) => { return { id: index, title: line, sound: md5(title) }; }),
 			id: '00001',
 			words: words.map((word, index) => { return { id: index, text: word.split('-')[0], sound: md5(word), translation: word.split('-')[1] }; }),
 		});
-		//appStore.setCount(Math.random());
 	}, [subtitle, title]);
-	// console.log("appStore.excercise", appStore.excercise);
 	return (
 		<ScrollView>
 			<View style={styles.container}>
-				<Text style={styles.title}>{appStore.excercise.title} </Text>
+				<Text style={styles.title}>{mainStore.excercise.title} </Text>
 				{/* <Text style={styles.title}>{subtitle}</Text> */}
 				<TouchableOpacity style={styles.button} onPress={() => handlePress(-1)}>
 					<Text style={styles.buttonText}>PlaySound</Text>
 				</TouchableOpacity>
 				{
-					appStore.excercise.questions?.map((question, index) => {
+					mainStore.excercise.questions?.map((question, index) => {
 						return (
 							<TouchableOpacity style={styles.button} onPress={() => handlePress(index)} key={index}>
 								<Text style={styles.buttonText}>{question.title}</Text>

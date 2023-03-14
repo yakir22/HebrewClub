@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity } from 'react-native';
-import useFirestoreUser, { useAppStore } from '../Data/MisckHooks';
+import useFirestoreUser, { useMainStore } from '../Data/MisckHooks';
 import firestore from '@react-native-firebase/firestore';
 import { useNavigation } from '@react-navigation/native';
 import { observer } from 'mobx-react-lite';
+import { INavigation } from '../Data/AppTypes.d';
 
 
 const AnswerPage = observer(() => {
-	const appStore = useAppStore();
-	const navigation = useNavigation();
+	const mainStore = useMainStore();
+	const navigation = useNavigation<INavigation>();
 
 	const user = useFirestoreUser();
 	const [text, setText] = useState('');
-	const [buttonDisabled, setButtonDisabled] = useState(true);
+	const [buttonDisabled, setButtonDisabled] = useState(false);
 	const minChars = 5;
-	const title = appStore.excercise.questions![appStore.quesionId].title;
+	const title = mainStore.excercise.questions!.map(q => q.title).join('\n');
 	const handleTextChange = (text: string) => {
 		setText(text);
 		setButtonDisabled(text.length < minChars);
@@ -39,7 +40,7 @@ const AnswerPage = observer(() => {
 		<View style={styles.container}>
 			<Text style={styles.title}>{title}</Text>
 			{
-				appStore.excercise.words!.map((word, index) => {
+				mainStore.excercise.words!.map((word, index) => {
 					return <TouchableOpacity onPress={() => setText(text + word.text)} key={index}>
 						<Text style={styles.words} key={index}>{word.text}</Text>
 					</TouchableOpacity>
@@ -54,6 +55,7 @@ const AnswerPage = observer(() => {
 				onChangeText={handleTextChange}
 			/>
 			<Button title="Submit" onPress={handleSubmit} disabled={buttonDisabled} />
+			<Button title="Read Other" onPress={() => navigation.navigate('Chat')} disabled={buttonDisabled} />
 		</View>
 	);
 });
