@@ -12,8 +12,8 @@ const Ticket: React.FC<{ questions: string[], sentences: string[][], other: ITel
 	const mainStore = useMainStore();
 	const navigation = useNavigation<INavigation>();
 	function handlePress() {
-		console.log('other', other.length)
-		mainStore.telegramTextEntries = other;
+		mainStore.telegramTextEntries = other.slice(0, 10);
+		console.log('other', mainStore.telegramTextEntries.length)
 		mainStore.setExcercise({
 			questions: questions.map((q, index) => ({ title: q })),
 			words: sentences.map((s, index) => ({ text: s[0], translation: s[1] }))
@@ -34,7 +34,7 @@ const WeekSelection = () => {
 		<View style={styles.pageTitleContainer}>
 			<Text style={styles.pageTitle}>Выберите тему </Text>
 		</View>
-		<ScrollView >
+		<ScrollView style={{ height: '80%' }}>
 			{
 				data.map((week, index) => {
 					if (week.length < 1) return null;
@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
 	pageTitleContainer: {
 		padding: 50,
 		width: '100%',
+		height: '20%',
 		justifyContent: 'center',
 		alignItems: 'center',
 	},

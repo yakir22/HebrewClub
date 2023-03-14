@@ -62,7 +62,7 @@ const ChatPage = observer(() => {
 		deleteEntry();
 	}, []);
 
-	console.log('Deleted', deleted.includes("199"), deleted, mainStore.telegramTextEntries.filter((entry => !deleted.includes(entry.id.toString()))).map((entry, index) => entry.id));
+	// console.log('Deleted', deleted.includes("199"), deleted, mainStore.telegramTextEntries.filter((entry => !deleted.includes(entry.id.toString()))).map((entry, index) => entry.id));
 
 	if (!mainStore.telegramTextEntries) {
 		return <View style={styles.container}>
